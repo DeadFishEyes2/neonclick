@@ -2,14 +2,14 @@
 
 let numPoints = 0;
 let numPointsPerClick = 1;
-let buildingLevel = Array.from({length: 12}, () => 0);
-let fighterLevel = Array.from({length: 12}, () => 0);
-let upgradeBool = Array.from({length: 12}, () => false);
+let buildingLevel = Array.from({length: 13}, () => 0);
+let fighterLevel = Array.from({length: 13}, () => 0);
+let upgradeBool = Array.from({length: 13}, () => false);
 let tutorialBool = Array.from({length: 10}, () => false);
-let buildingCost = Array.from({lenght: 12}, () => 0);
-let buildingIncome = Array.from({lenght: 12}, () => 0);
-let buildingTime = Array.from({lenght: 12}, () => 0);
-let buildingMult = Array.from({lenght: 12}, () => 0);
+let buildingCost = Array.from({lenght: 13}, () => 0);
+let buildingIncome = Array.from({lenght: 13}, () => 0);
+let buildingTime = Array.from({lenght: 13}, () => 0);
+let buildingMult = Array.from({lenght: 13}, () => 0);
 let baseIncome = [0, 2, 73, 100, 267, 512, 1065, 2043, 5347, 10876, 25256, 67895];
 let baseMult = [0, 1, 7, 31, 247, 512, 1200, 3781, 8678, 21178, 70896, 150765];
 let index;
