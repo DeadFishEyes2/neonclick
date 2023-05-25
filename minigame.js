@@ -14,6 +14,7 @@ toggleMinigame.addEventListener("click", ()=>{
 let maxNumberOfWindows = 100;
 let gameTime = 15000;
 let gameCooldown = 60000;
+let earnings = 0;
 
 function calculateProbability(){
   redProbability = (1 - greenProbability) / 2;
@@ -29,6 +30,8 @@ calculateProbability();
 startMinigame.addEventListener("click", () => {
   if (gameCooldown == 0){
     netrunCover.style.display = "none";
+    for (let i = 1; i <= 11; i++)
+            earnings += buildingIncome[i];
     setTimeout(()=>{
       netrunCover.style.display = "block";
       gameCooldown = 60000;
@@ -156,8 +159,8 @@ const nett = document.querySelector(".nett");
       window.addEventListener("click", () => {
         if (window.style.backgroundImage === 'url("assets/red_window.png")') {
           audioError.play();
-          if (numPoints-200 >= 0)
-            numPoints -= 200;
+          if (numPoints - (earnings/10*2) >= 0)
+            numPoints -= (earnings/10*2;
           else 
             numPoints = 0;
           points.innerHTML = convert(numPoints);
@@ -168,7 +171,7 @@ const nett = document.querySelector(".nett");
         if (window.style.backgroundImage === 'url("assets/green_window.png")') {
           audioPop.play();
           let rect = canvas.getBoundingClientRect();
-          numPoints += 50;
+          numPoints += (earnings/10);
           points.innerHTML = convert(numPoints);
           /*
           ctx.beginPath();
