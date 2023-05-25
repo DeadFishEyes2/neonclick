@@ -11,8 +11,20 @@ toggleMinigame.addEventListener("click", ()=>{
         document.getElementById("minigame").style.display = 'block';
         toggleMinigame.style.display = "none";
 
+let maxNumberOfWindows = 100;
 let gameTime = 15000;
 let gameCooldown = 60000;
+
+function calculateProbability(){
+  redProbability = (1 - greenProbability) / 2;
+  greyProbability = (1 - greenProbability) / 2;
+}
+
+var greenProbability = 0.5; // Adjust this value to manipulate the probability of a green window
+var redProbability;
+var greyProbability;
+calculateProbability();
+
 
 startMinigame.addEventListener("click", () => {
   if (gameCooldown == 0){
@@ -121,7 +133,7 @@ var audioError = new Audio("assets/error_sound.mp3");
 
 
 const nett = document.querySelector(".nett");
-    const windowCount = 10;
+    const windowCount = maxNumberOfWindows;
     const windows = [];
 
     const randomPosition = () => {
@@ -171,8 +183,13 @@ const nett = document.querySelector(".nett");
     let timeoutId;
     const showWindow = () => {
       const window = windows[Math.floor(Math.random() * windows.length)];
+
       window.style.backgroundImage =
-        Math.random() > 0.5 ? "url('assets/red_window.png')" : Math.random() > 0.5 ? "url('assets/green_window.png')" : "url('assets/grey_window.png')";
+        Math.random() < redProbability
+          ? "url('assets/red_window.png')"
+          : Math.random() < greyProbability
+          ? "url('assets/grey_window.png')"
+          : "url('assets/green_window.png')";
       window.style.display = "block";
       timeoutId = setTimeout(hideWindow, randomInterval() + 100);
     };
