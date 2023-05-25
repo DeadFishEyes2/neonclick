@@ -36,8 +36,8 @@ loadGame();
         for(let i=1;i<=11;i++) {
             document.getElementById("building" + i + "-level").innerHTML = buildingLevel[i];
             document.getElementById("building" + i + "-cost").innerHTML = convert(buildingCost[i]) + " $";
-			document.getElementById("building" + i + "-income").innerHTML = buildingIncome[i] + " $";
-			document.getElementById("building" + i + "-time").innerHTML = buildingTime[i];
+	    document.getElementById("building" + i + "-income").innerHTML = buildingIncome[i] + " $";
+	    document.getElementById("building" + i + "-time").innerHTML = buildingTime[i];
         }
     }
     //number converter function
@@ -123,8 +123,8 @@ loadGame();
                 points.innerHTML = convert(numPoints) + " $";
                 document.getElementById("building" + i + "-level").innerHTML = buildingLevel[i];
                 document.getElementById("building" + i + "-cost").innerHTML = convert(buildingCost[i]) + " $";
-				document.getElementById("building" + i + "-income").innerHTML = buildingIncome[i] + " $";
-				document.getElementById("building" + i + "-time").innerHTML = buildingTime[i];
+		document.getElementById("building" + i + "-income").innerHTML = buildingIncome[i] + " $";
+		document.getElementById("building" + i + "-time").innerHTML = buildingTime[i];
                 document.dispatchEvent(new Event('buildingChanged'));
             }
             })
