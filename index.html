@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CyberPunkRomania</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="tutorialstyle.css">
+    </head>
+    <body>
+        <audio>
+            <source src="./clickSound.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+          </audio>
+
+        <div class = "grid-container">
+            
+            <div class = "button-column">
+                
+                <h1>Clicker Game</h1>
+
+                <h3>Points: <span id="points">0</span></h3>
+                
+                <div class = "button-container">
+                    <button id="image-button"></button>
+                </div>
+            </div>
+
+            <div class = "fighters-column">
+                
+                <div class = "fighters-column-name">
+                    <p>FIGHTERS</p>
+                </div>
+
+                <div class = "fighters-grid-column-buttons">
+                    <button class = "fighter-button" id = "fighter1" ></button>
+                    <div class = "fighter-tooltip" id = "fighter1-tooltip">
+                        This fighter is at level <span id = "fighter1-level">0</span><br>
+                        The next upgrade costs <span id = "fighter1-cost">0</span>
+                    </div>
+                    
+                    <button class = "fighter-button" id = "fighter2" ></button>
+                </div>
+
+            </div>
+
+            <div class = "buildings-column">
+
+                <div class = "buildings-column-name">
+                    <p>BUILDINGS</p>
+                </div>
+
+                <div class = "buildings-grid-column">
+
+                    <button class = "building" id = "building1"></button>
+                    <div class = "building-tooltip" id = "building1-tooltip">
+                       The Ferentari Factory     <br>
+                       This building is at level <span id = "building1-level">0</span><br>
+                       The next upgrade costs <span id = "building1-cost">0</span>
+                    </div>
+                    <div class = "progress-bar">
+                        <div class="progress-bar-glow" id = "progress-bar-1"></div>
+                    </div>
+
+                    <button class = "building" id = "building2"></button>
+                    <div class = "building-tooltip" id = "building2-tooltip">
+                        Cutthroat Banking <br>
+                        This building is at level <span id = "building2-level">0</span><br>
+                        The next upgrade costs <span id = "building2-cost">0</span>
+                     </div>
+                    <div class = "progress-bar">
+                        <div class="progress-bar-glow" id = "progress-bar-2"></div>
+                    </div>
+
+                    <button class = "building" id = "building3"></button>
+                    <div class = 'building-tooltip' id="building3-tooltip">
+                        The Casino <br>
+                        This building is at level <span id = "building3-level">0</span> <br>
+                        The next upgrade costs <span id = "building3-cost">0</span>
+                    </div>
+                    <div class = "progress-bar">
+                        <div class="progress-bar-glow" id = "progress-bar-3"></div>
+                    </div>
+
+                    <button class = "building" id = "building4"></button>
+                    <div class = 'building-tooltip' id = "building4-tooltip">
+                        The Doll House <br>
+                        This building is at level <span id = "building4-level">0</span> <br>
+                        The next upgrade costs <span id = "building4-cost">0</span>
+                    </div>
+                    <div class = "progress-bar">
+                        <div class = "progress-bar-glow" id = "progress-bar-4"></div>
+                    </div>
+
+                    <button class = "building" id = "building5"></button>
+                    <div class='building-tooltip' id = "building5-tooltip">
+                        Neturuning Facility <br>
+                        This building is at level <span id = "building5-level">0</span> <br>
+                        The next upgrade costs <span id = "building5-cost">0</span>
+                    </div>
+                    <div class = "progress-bar">
+                        <div class = "progress-bar-glow" id = "progress-bar-5"></div>
+                    </div>
+
+                    <button class = "building" id = "building6"></button>
+                    <div class='building-tooltip' id = "building6-tooltip">
+                        Cutthroat Security <br>
+                        This building is at level <span id = "building6-level">0</span> <br>
+                        The next upgrade costs <span id = "building6-cost">0</span>
+                    </div>
+                    <div class = "progress-bar">
+                        <div class = "progress-bar-glow" id = "progress-bar-6"></div>
+                    </div>
+
+                    <button class = "building" id = "building7"></button>
+                    <div class='building-tooltip' id = "building7-tooltip">
+                        Illegal Synthetic Implants Factory <br>
+                        This building is at level <span id = "building7-level">0</span> <br>
+                        The next upgrade costs <span id = "building7-cost">0</span>
+                    </div>
+                    <div class = "progress-bar">
+                        <div class = "progress-bar-glow" id = "progress-bar-7"></div>
+                    </div>
+
+                    <button class = "building" id = "building8"></button>
+                    <div class='building-tooltip' id = "building8-tooltip">
+                        High-Tech Manufacturing Plant <br>
+                        This building is at level <span id = "building8-level">0</span> <br>
+                        The next upgrade costs <span id = "building8-cost">0</span>
+                    </div>
+                    <div class = "progress-bar">
+                        <div class = "progress-bar-glow" id = "progress-bar-8"></div>
+                    </div>
+
+                    <button class = "building" id = "building9"></button>
+                    <div class='building-tooltip' id = "building9-tooltip">
+                        Forging alliances and attracting customers <br>
+                        This building is at level <span id = "building9-level">0</span> <br>
+                        The next upgrade costs <span id = "building9-cost">0</span>
+                    </div>
+                    <div class = "progress-bar">
+                        <div class = "progress-bar-glow" id = "progress-bar-9"></div>
+                    </div>
+                    
+                    <button class = "building" id = "building10"></button>
+                    <div class='building-tooltip' id = "building10-tooltip">
+                        Loan sharking <br>
+                        This building is at level <span id = "building10-level">0</span> <br>
+                        The next upgrade costs <span id = "building10-cost">0</span>
+                    </div>
+                    <div class = "progress-bar">
+                        <div class = "progress-bar-glow" id = "progress-bar-10"></div>
+                    </div>
+
+                    <button class = "building" id = "building11"></button>
+                    <div class='building-tooltip' id = "building11-tooltip">
+                        Muscle for hire <br>
+                        This building is at level <span id = "building11-level">0</span> <br>
+                        The next upgrade costs <span id = "building11-cost">0</span>
+                    </div>
+                    <div class = "progress-bar">
+                        <div class = "progress-bar-glow" id = "progress-bar-11"></div>
+                    </div>
+
+                </div>
+                
+            </div>
+
+            <div class = "shop-grid">
+
+                <div class = "middle-row">
+                    
+
+
+                      <div id = "minigame2" style = "display: none;">
+                          <canvas id="canvas2"></canvas>
+
+                          <div id = "stock-cover"></div>
+                        
+                          <button id = "buy">
+                            Buy stock <br>
+                            <span id = "stock-buy-price">150</span>
+                          </button>
+
+                          <button id = "sell">
+                            Sell stock <br>
+                            <span id = "stock-sell-price">150</span>
+                          </button>
+
+                          <div id = stock-container> Stocks </div>
+    
+                          <div id="numer-of-stock-container">
+                            <span id = "number-of-stocks">0</span>
+                          </div>
+
+                          <button id = "prev-stock"><</button>
+                          <button id = "next-stock">></button>
+
+                      </div>
+                      
+                     
+                
+                      <div id = "minigame" style = "display: none;" >
+                        <div class="nett">
+                            <canvas id="room" width="500" height="500"></canvas>
+                        </div>
+
+                        <div id = "netrun-cover">
+                            <h1>NETRUN</h1>
+                            <h3>Available in</h3>
+                            <button id = "minigame-start-button"><span id = minigame-timer>60s</span></button>
+                            <br>
+                            <p>You will have 15s in the net, make the most of it!</p>
+                        </div>
+
+                      </div>
+                  
+                      <button id = "minigame-button">Toggle minigame</button>
+                  
+                      <audio>
+                        <source src="assets/pop_sound.mp3" type="audio/mpeg">
+                        <source src="assets/error_sound.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                      </audio>
+                    </div>
+
+                <div class = "shop-name">
+                    <p> SHOP </p>
+                </div>
+
+                <div id = "shop-grid-column" class="shop-grid-column">
+
+                    <button class = "upgradeButton" id = "upgrade1"></button>
+
+                    <button class = "upgradeButton" id = "upgrade2"></button>
+
+                    <button class = "upgradeButton" id = "upgrade3"></button>
+                    
+                </div>
+
+                <div class="settings">
+                    <button id = "resetButton">RESET</button>
+                </div>
+
+            </div>
+
+            <!-- Tutorial -->
+
+            <div id = "tutorial-panel-1" class = "tutorial">
+                <p> See this button? <br>
+                    We want you to press it! <br>
+                    <=============== 
+                </p>    
+            </div>
+
+            <div id = "tutorial-panel-2" class="tutorial">
+                <p> Now that you've made some money, it's time to make more! <br>
+                    Start huslin'! <br>
+                    || <br>
+                    || <br>
+                    \/ <br>
+                </p>
+            </div>
+
+            <div id = "tutorial-panel-3" class="tutorial">
+                <p> 
+                    /\ <br>
+                    || <br>
+                    || <br>
+                    || <br>
+                    Starting a bussines is the key to making a lot of money. 
+                </p>
+            </div>
+
+            <div id = "tutorial-panel-4" class="tutorial">
+                <img src="assets/tutorial4.png">
+            </div>
+
+        </div>
+
+        <script src="saving.js"></script>
+        <script src="progress.js"></script>
+        <script src="minigame.js"></script>
+        <script src="minigame2.js"></script>
+        <script src="main.js"></script>
+        
+
+    </body>
+</html>

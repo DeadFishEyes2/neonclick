@@ -1,0 +1,437 @@
+body{
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+@font-face {
+    font-family: 'Cyberpunk';
+    src: url('Cyberpunk.ttf') format('truetype');
+}
+* {
+    font-family: 'Cyberpunk', sans-serif;
+}
+
+.hidden{
+    display: none;
+}
+
+.grid-container {
+    display: grid;
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    grid-template-columns: 15% 20% 65%; /* 2 columns, each taking up 1 fraction unit of space */
+    grid-template-rows: 35% 65%; /* 2 rows, the first one taking 30% of the grid height, the second one taking 70% */
+    height: 100%; /* set the grid container to take up the full viewport height */
+    width: 100%;
+    background-color: #bbc199;
+}
+
+.button-column{
+    grid-column: 1 / span 2;
+    grid-row: 1;
+    background-image: url("");
+    display: block;
+}
+
+    .button-container{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: Top;
+    }
+
+    #image-button {
+        position: relative;
+        width: 30%;
+        height: 45%;
+        border-radius: 50%; /* makes the button round */
+        padding: 0;
+        background-image: url("assets/Button.png");
+        background-size: 100%;
+        transition: transform 0.1s ease-in-out;
+    }
+
+    #image-button:active {
+      transform: translateY(6px);
+      box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3) inset;
+    }
+
+.fighters-column{
+    grid-column: 1;
+    grid-row: 2;
+    background-color: #3b4456;
+    display: grid;
+    position: relative;
+    padding: 0;
+    margin: 0;
+    grid-template-rows: 50px 100%;
+    height: 100%;
+    width: 100%;
+}
+
+    .fighters-column-name{
+        grid-row: 1;
+        background-color: #626f8b;
+    }
+
+    .fighters-grid-column-buttons{
+        grid-row: 2;
+        background-color: #79a195;
+    }
+
+    .fighter-button{
+        height: 50px;
+        width: 100%;
+        padding: 0px;
+        border: 0px;
+        display: block;
+    }
+
+    .fighter-tooltip {
+        position: absolute;
+        display: none;
+        align-items: center;
+        z-index: 1;
+        font-size: 16px;
+        background-color: #f9f9f9;
+        color: black;
+        text-align: center;
+        padding: 5px;
+        border-radius: 6px;
+    }
+
+    #fighter1{
+        background-image: url("assets/PlaceHolderImage.png");
+    }
+
+    #fighter2{
+        background-image: url("assets/PlaceHolderImage.png");
+    }
+
+.buildings-column{
+    grid-column: 2;
+    grid-row: 2;
+    display: grid;
+    position: relative;
+    grid-template-rows: 50px 100%;
+    height: 100%;
+    width: 100%;
+}
+
+    .buildings-grid-column{
+        grid-row: 2;
+        background-color: #9b858e;
+        font-size: 0;
+    }
+
+    .building-tooltip {
+        position: absolute;
+        display: none;
+        align-items: center;
+        z-index: 1;
+        font-size: 16px;
+        background-color: #f9f9f9;
+        color: black;
+        text-align: center;
+        padding: 5px;
+        border-radius: 6px;
+    }
+
+    .buildings-column-name{
+        grid-row: 1;
+        background-color: #ced3a1;
+    }
+
+    .building{
+        height: 50px;
+        width: 20%;
+        display: inline-block;
+        margin: 0;
+        border: 0;
+        padding: 0;
+    }
+
+        #building1{ /*aici pentru buton doar ii schimbi poza*/
+            background-image: url("assets/PlaceHolderImage.png");
+        }
+
+        #building2{
+            background-image: url("assets/PlaceHolderImage.png");
+        }
+
+        #building3{
+            background-image: url("assets/PlaceHolderImage.png");
+        }
+
+        #building4{
+            background-image: url("assets/PlaceHolderImage.png");
+        }
+
+        #building5{
+            background-image: url("assets/PlaceHolderImage.png");
+        }
+
+        #building6{
+            background-image: url("assets/PlaceHolderImage.png");
+        }
+
+        #building7{
+            background-image: url("assets/PlaceHolderImage.png");
+        }
+
+        #building8{
+            background-image: url("assets/PlaceHolderImage.png");
+        }
+
+        #building9{
+            background-image: url("assets/PlaceHolderImage.png");
+        }
+
+        #building10{
+            background-image: url("assets/PlaceHolderImage.png");
+        }
+
+        #building11{
+            background-image: url("assets/PlaceHolderImage.png");
+        }
+
+    .progress-bar {
+        position: relative;
+        bottom: 10px;
+        display: inline-block;
+        width: 80%;
+        height: 30px;
+        background-color: #ddd;
+        border-radius: 20px;
+    }
+
+        .progress-bar-glow {
+            position: relative;
+            width: 0%;
+            height: 100%;
+            background-color: red;
+            border-radius: 20px;
+            animation-name: glow;
+            animation-duration: 1s;
+            animation-timing-function: linear; /*nu e liniar, dar arata mai bine, o lutem face liniara cu comanda de mai jos
+            animation-timing-function: linear;*/
+            animation-iteration-count: infinite;
+            animation-play-state: paused;
+        }
+
+        @keyframes glow {
+            from {
+                width: 0%;
+                box-shadow: 0 0 10px red;
+            }
+            to {
+                width: 100%;
+                box-shadow: 0 0 10px red;
+            }
+        }
+
+.shop-grid{
+    grid-column: 3;
+    grid-row: 1/ span 2;
+    display: grid;
+    grid-template-columns: 90% 10%;
+    grid-template-rows: 5% 35% 60%;
+    background: beige;
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+    .middle-row{
+        grid-column: 1;
+        grid-row: 1/span 3;
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: 300px 500px;
+        align-items: right;
+    }
+
+        #minigame{
+            grid-row: 2;
+            height: 500px;
+            width: 500px;
+            display: grid;
+        }
+
+        #minigame-button{
+            grid-row: 2;
+            height: 40px;
+            width: 80px;
+        }
+
+        #minigame-start-button{
+            height: 60px;
+            width: 120px;
+            text-align: center;
+            font-size: 32px;
+        }
+
+        #canvas {
+            grid-row: 2;
+            border: 1px solid black;
+            position: relative;
+            display: block;
+        }
+        #netrun-cover{
+            grid-row: 2;
+            color: aliceblue;
+            top: 260px;
+            left: 0px;
+            position: absolute;
+            z-index: 1;
+            height: 500px;
+            width: 500px;
+            background-color: #141517;
+            text-align: center;
+            align-content: center;
+            
+        }
+        .nett {
+            background-color: black;
+            width: 500px;
+            height: 500px;
+            position: relative;
+            display: block;
+            margin: 0 auto;
+        }
+        .window {
+            background-image: url('assets/grey_window.png');
+            width: 45px;
+            height: 70px;
+            position: absolute;
+            display: none;
+            border: 1px solid black;
+            z-index: 1;
+        }
+
+        #minigame2{
+            grid-row: 1;
+            height: 300px;
+            width: 500px;
+            display: grid;
+            grid-template-columns: 400px 50px 50px;
+            grid-template-rows: 100px 100px 20px 30px 50px;
+            position: relative;
+        }
+            #canvas2 {
+                grid-column: 1;
+                grid-row: 1/span 5;
+			    /*border: 1px solid yellow;*/
+			    background-color: #141517;
+		    }
+            #stock-cover{
+                height: 300px;
+                width: 400px;
+                position: absolute;
+                opacity: 0.4;
+                background-image: url('assets/stock-cover.png');
+            }
+		    #stock-market-button{
+			    height: 40px;
+			    width: 100px;
+		    }
+            #buy{
+                grid-column: 2/span 3;
+                grid-row: 1;
+                display: block;
+                height: 100px;
+                width: 100px;
+                background-color: green;
+            }
+            #sell{
+                grid-column: 2/span 3;
+                grid-row: 2;
+                display: block;
+                height: 100px;
+                width: 100px;
+                background-color: red;
+            }
+            #stock-container{
+                grid-column: 2/span 3;
+                grid-row: 3;
+                height: 20px;
+                width: 100px;
+                color: aliceblue;
+                background-color: #3b4456;
+                text-align: center;
+            }
+            #numer-of-stock-container{
+                grid-column: 2/span 3;
+                grid-row: 4;
+                height: 30px;
+                width: 100px;
+                color: aliceblue;
+                background-color: #3b4456;
+                text-align: center;
+            }
+            #prev-stock{
+                border-color: black;
+                grid-column: 2;
+                grid-row: 5;
+                height: 50px;
+                width: 50px;
+                color: aliceblue;
+                background-color: #60532c;
+                text-align: center;
+            }
+            #next-stock{
+                grid-column: 3;
+                grid-row: 5;
+                height: 50px;
+                width: 50px;
+                color: aliceblue;
+                background-color: #60532c;
+                text-align: center;
+            }
+
+    .shop-name{
+        grid-column: 2;
+        grid-row: 1;
+        margin: auto;
+    }
+
+    .shop-grid-column{
+        cursor: grab;
+        grid-column: 2;
+        grid-row: 2;
+        position: relative;
+        padding: 5px;
+        overflow: hidden;
+    }
+
+        .upgradeButton{
+            display: none;
+            width: 80px;
+            height: 80px;
+            margin: auto;
+        }
+
+        #upgrade1{
+            background-color: aqua;
+        }
+
+        #upgrade2{
+            background-color: blue;
+        }
+
+        #upgrade3{
+            background-color: blueviolet;
+        }
+
+        .settings{
+            grid-column: 2;
+            grid-row:3;
+        }
+
+            #resetButton{
+                height: 70px;
+                width: 70px;
+            }

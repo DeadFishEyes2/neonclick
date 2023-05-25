@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+		#canvas2 {
+			border: 1px solid yellow;
+			background-color: #141517;
+		}
+	</style>
+</head>
+<body>
+	<div id = "minigame2" style = "display: none;">
+		<canvas id="canvas"></canvas>
+		<br>
+		<p> Stock Price: <span id = "stock-price">150</span></p>
+		<br>
+		<p> Balance: <span id = "balance">1000</span></p><br>
+		<p> Stocks: <span id = "number-of-stocks">0</span></p><br>
+		<button id = "buy">Buy stock</button>
+		<br>
+		<button id = "sell">Sell stock</button>
+	</div>
+	<script>
+		const canvas = document.getElementById("canvas");
+		const ctx = canvas.getContext("2d");
+		const stockPrice = document.getElementById("stock-price");
+		const Balance = document.getElementById("balance");
+		
+		let money = 1000;
+		let curentPrice = 150;
+		let nrStocks = 0;
+
+		//buy/sell
+		const buyButton = document.getElementById("buy");
+		const sellButton = document.getElementById("sell");
+
+		
+			
+			document.getElementById("minigame2").style.display = "block";
+
+		buyButton.addEventListener("click", () => {
+			if (money > curentPrice){
+				money -= curentPrice;
+				nrStocks++;
+				document.getElementById("number-of-stocks").innerHTML = nrStocks;
+				Balance.innerHTML = money;
+			}
+		});
+
+		sellButton.addEventListener("click", () => {
+			if (nrStocks > 0){
+				nrStocks--;
+				money += curentPrice;
+				document.getElementById("number-of-stocks").innerHTML = nrStocks;
+				Balance.innerHTML = money;
+			}
+		});
+
+		// Set the canvas size
+		canvas.width = 500;
+		canvas.height = 300;
+
+		//creating the stocks
+			// Define the stock market simulation parameters
+				const numStocks = 30; // Number of stocks to simulate
+
+			// initiating the stock
+				let stockPrices = [];
+				let stockTimes = [0];
+				let newStockPrice;
+				let volatility = 4; //less is more
+				let luck = 0.5; // more is more
+
+				stockPrices[0] = 150;
+
+				for (let i = 1; i < numStocks; i++) {
+					stockTimes.push(stockTimes[i-1] + Math.floor(Math.random() * 5)*10 + 15);
+					if (Math.random() < luck){
+						newStockPrice = (stockPrices[i-1] - (stockPrices[i-1] * Math.random()/volatility)) % 300;
+				 	} else {
+						newStockPrice = (stockPrices[i-1] + (stockPrices[i-1] * Math.random()/volatility)) % 300;
+					}
+					if (newStockPrice < 30)
+						newStockPrice = 50;
+					stockPrices.push(newStockPrice);
+				}
+
+		//drawing the graph
+		const getStockPrice = () => {
+			let lastStock = 0;
+			while (stockTimes[lastStock+1] <= canvas.width){
+				lastStock++;
+			}
+			
+				let X = stockTimes[lastStock+1] - stockTimes[lastStock];
+			
+			//console.log(y);
+			if (stockPrices[lastStock+1] > stockPrices[lastStock]){
+				let x = stockTimes[lastStock+1] - canvas.width;
+				let Y = stockPrices[lastStock+1] - stockPrices[lastStock];
+				let y = (Y*(X-x))/X;
+				curentPrice = Math.floor(300 - (stockPrices[lastStock] + y));
+			} else { 
+				let x = stockTimes[lastStock+1] - canvas.width;
+				let Y = stockPrices[lastStock+1] - stockPrices[lastStock];
+				let y = (Y*x)/X;
+				curentPrice = Math.floor(300 - (stockPrices[lastStock+1] - y));
+			}
+			stockPrice.innerHTML = curentPrice;
+			//console.log(lastStock);
+		};
+
+		const draw = () => {
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+			ctx.fillStyle = '#141517';
+  			ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+			  ctx.beginPath();
+			for(let index = 0; index < numStocks; index++){
+				if(index == 0){
+					ctx.strokeStyle = "yellow";
+					ctx.moveTo(stockTimes[index],stockPrices[index]);
+				} else {
+					ctx.lineTo(stockTimes[index],stockPrices[index]);
+				}
+			};
+			ctx.stroke();
+			for (let index = 0; index < numStocks; index++){
+				stockTimes[index] -= 1;
+			}
+			ctx.fillStyle = 'yellow';
+			ctx.font = "20px Arial";
+			ctx.fillText("BBCompany",10,50);
+			ctx.font = "10px Arial";
+			ctx.fillText("250",450,50);
+			ctx.fillText("200",450,100);
+			ctx.fillText("150",450,150);
+			ctx.fillText("100",450,200);
+			ctx.fillText("50",450,250);
+			//setting a new price for the stock
+			if (stockTimes[1] < 0){
+				stockTimes.shift();
+				stockPrices.shift();
+				if (Math.random() < luck){
+						newStockPrice = (stockPrices[numStocks-2] - (stockPrices[numStocks-2] * Math.random()/volatility) + 20) % 290;
+				} else {
+						newStockPrice = (stockPrices[numStocks-2] + (stockPrices[numStocks-2] * Math.random()/volatility) + 20) % 290;
+				}
+				if (newStockPrice < 30)
+					newStockPrice = 50;
+				stockTimes.push(stockTimes[numStocks-2] + Math.floor(Math.random() * 5)*10 + 10);
+				stockPrices.push(newStockPrice);
+			}
+			getStockPrice();
+		};
+		
+		setInterval(draw, 50);
+		
+	</script>
+</body>
+</html>
