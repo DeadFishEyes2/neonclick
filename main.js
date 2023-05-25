@@ -17,10 +17,10 @@ let index;
 loadGame(); 
 
 // values 
-    const upgradeBuilding = Array.from({length: 12}, () => NaN);
-    const upgradeFighter = Array.from({length: 12}, () => NaN);
-    const building_tooltip = Array.from({length: 12}, () => NaN);
-    const fighter_tooltip = Array.from({length: 12}, () => NaN);
+    const upgradeBuilding = Array.from({length: 13}, () => NaN);
+    const upgradeFighter = Array.from({length: 13}, () => NaN);
+    const building_tooltip = Array.from({length: 13}, () => NaN);
+    const fighter_tooltip = Array.from({length: 13}, () => NaN);
     const button = document.getElementById("image-button");
     const pointsPerClick = document.getElementById('points-per-click');
     const points = document.getElementById('points');
@@ -35,7 +35,9 @@ loadGame();
     function display() {
         for(let i=1;i<=11;i++) {
             document.getElementById("building" + i + "-level").innerHTML = buildingLevel[i];
-            document.getElementById("building" + i + "-cost").innerHTML = convert(buildingCost[i]);
+            document.getElementById("building" + i + "-cost").innerHTML = convert(buildingCost[i]) + " $";
+			document.getElementById("building" + i + "-income").innerHTML = buildingIncome[i] + " $";
+			document.getElementById("building" + i + "-time").innerHTML = buildingTime[i];
         }
     }
     //number converter function
@@ -68,8 +70,7 @@ loadGame();
     button.addEventListener('click', () => {
         audio.play();
         numPoints += numPointsPerClick;
-        updateProgress();
-        points.innerHTML = convert(numPoints);
+        points.innerHTML = convert(numPoints) + " $";
     });
 
     button.addEventListener("mousedown", function() {
@@ -80,9 +81,6 @@ loadGame();
         button.classList.remove("pressed");
     });   
     
-    updateProgress();
-    
-
 //fighters
     
     //fighter 1
@@ -91,7 +89,7 @@ loadGame();
                 numPoints -= 20*Math.pow(1.15,fighterLevel[1]);
                 fighterLevel[1]++;
                 numPointsPerClick += 1;
-                points.innerHTML = convert(numPoints);
+                points.innerHTML = convert(numPoints) + " $";
             }
         });
 
@@ -114,19 +112,19 @@ loadGame();
                     numPoints -= buildingCost[i];
                     buildingLevel[i]++;
                     buildingCost[i]*=1.131;
-
-                    updateProgress(); // provizoriu
                 
-                if (buildingLevel[i]-1 == 0)
+                if (buildingLevel[i] -1 == 0)
                     buildingIncome[i] = baseIncome[i];
                 else 
                     buildingIncome[i] += (baseMult[i] * buildingMult[i]);
                 
-                if ((buildingLevel[i] % 25 == 0 && buildingLevel[i] <= 75) || (buildingLevel[i] % 100 == 0) && buildingTime[i] > 1)
+                if (((buildingLevel[i] % 25 == 0 && buildingLevel[i] <= 75) || (buildingLevel[i] % 100 == 0)) && buildingTime[i] > 1)
                     buildingTime[i] /= 2;
-                points.innerHTML = convert(numPoints);
+                points.innerHTML = convert(numPoints) + " $";
                 document.getElementById("building" + i + "-level").innerHTML = buildingLevel[i];
-                document.getElementById("building" + i + "-cost").innerHTML = convert(buildingCost[i]);
+                document.getElementById("building" + i + "-cost").innerHTML = convert(buildingCost[i]) + " $";
+				document.getElementById("building" + i + "-income").innerHTML = buildingIncome[i] + " $";
+				document.getElementById("building" + i + "-time").innerHTML = buildingTime[i];
                 document.dispatchEvent(new Event('buildingChanged'));
             }
             })
@@ -144,17 +142,18 @@ loadGame();
     //progress bar function
     function animationUpdate (index) {
         numPoints += buildingIncome[index];
-        points.innerHTML = convert(numPoints);
+        points.innerHTML = convert(numPoints) + " $";
     }
 
     function displayProgressBar(){
-        for (let i = 1; i <= 11; i++){
-            if (buildingLevel[i] >= 1){
-                document.getElementById("progress-bar-" + i).style.animation = 'glow';
-                document.getElementById("progress-bar-" + i).style.animationTimingFunction = 'linear';
-                document.getElementById("progress-bar-" + i).style.animationIterationCount = 'infinite';
-                document.getElementById("progress-bar-" + i).style.animationPlayState = 'running';
-                document.getElementById("progress-bar-" + i).style.animationDuration = buildingTime[i] + "s";
+        for (let i = 1; i <= 11; i++) {
+            if (buildingLevel[i] >= 1) {
+				//normal progress bar
+				document.getElementById("progress-bar-" + i).style.animation = 'glow';
+				document.getElementById("progress-bar-" + i).style.animationTimingFunction = 'linear';
+				document.getElementById("progress-bar-" + i).style.animationIterationCount = 'infinite';
+				document.getElementById("progress-bar-" + i).style.animationPlayState = 'running';
+				document.getElementById("progress-bar-" + i).style.animationDuration = buildingTime[i] + "s";
             } else {
                 document.getElementById("progress-bar-" + i).style.animation = 'none';
             }
