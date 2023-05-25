@@ -11,15 +11,24 @@ toggleMinigame.addEventListener("click", ()=>{
         document.getElementById("minigame").style.display = 'block';
         toggleMinigame.style.display = "none";
 
+let maxNumberOfWindows = 10;
 let gameTime = 15000;
 let gameCooldown = 60000;
-let earnings = 0;
+
+function calculateProbability(){
+  redProbability = (1 - greenProbability) / 2;
+  greyProbability = (1 - greenProbability) / 2;
+}
+
+var greenProbability = 0.5; // Adjust this value to manipulate the probability of a green window
+var redProbability;
+var greyProbability;
+calculateProbability();
+
 
 startMinigame.addEventListener("click", () => {
   if (gameCooldown == 0){
     netrunCover.style.display = "none";
-	for (let i = 1; i <= 11; i++)
-		earnings += buildingIncome[i];
     setTimeout(()=>{
       netrunCover.style.display = "block";
       gameCooldown = 60000;
@@ -124,7 +133,7 @@ var audioError = new Audio("assets/error_sound.mp3");
 
 
 const nett = document.querySelector(".nett");
-    const windowCount = 10;
+    const windowCount = maxNumberOfWindows;
     const windows = [];
 
     const randomPosition = () => {
@@ -147,11 +156,11 @@ const nett = document.querySelector(".nett");
       window.addEventListener("click", () => {
         if (window.style.backgroundImage === 'url("assets/red_window.png")') {
           audioError.play();
-          if (numPoints - (earnings/5) >= 0)
-            numPoints -= (earnings/5);
+          if (numPoints-200 >= 0)
+            numPoints -= 200;
           else 
             numPoints = 0;
-          points.innerHTML = convert(numPoints) + " $";
+          points.innerHTML = convert(numPoints);
           window.style.display = 'none';
         }
       });
@@ -159,8 +168,8 @@ const nett = document.querySelector(".nett");
         if (window.style.backgroundImage === 'url("assets/green_window.png")') {
           audioPop.play();
           let rect = canvas.getBoundingClientRect();
-          numPoints += (earnings/10);
-          points.innerHTML = convert(numPoints) + " $";
+          numPoints += 50;
+          points.innerHTML = convert(numPoints);
           /*
           ctx.beginPath();
           ctx.fillText("+50",event.clientX-rect.left, event.clientY-rect.top);
@@ -174,8 +183,13 @@ const nett = document.querySelector(".nett");
     let timeoutId;
     const showWindow = () => {
       const window = windows[Math.floor(Math.random() * windows.length)];
+
       window.style.backgroundImage =
-        Math.random() > 0.5 ? "url('assets/red_window.png')" : Math.random() > 0.5 ? "url('assets/green_window.png')" : "url('assets/grey_window.png')";
+        Math.random() < redProbability
+          ? "url('assets/red_window.png')"
+          : Math.random() < greyProbability
+          ? "url('assets/grey_window.png')"
+          : "url('assets/green_window.png')";
       window.style.display = "block";
       timeoutId = setTimeout(hideWindow, randomInterval() + 100);
     };
