@@ -13,10 +13,13 @@ toggleMinigame.addEventListener("click", ()=>{
 
 let gameTime = 15000;
 let gameCooldown = 60000;
+let earnings = 0;
 
 startMinigame.addEventListener("click", () => {
   if (gameCooldown == 0){
     netrunCover.style.display = "none";
+	for (let i = 1; i <= 11; i++)
+		earnings += buildingIncome[i];
     setTimeout(()=>{
       netrunCover.style.display = "block";
       gameCooldown = 60000;
@@ -144,11 +147,11 @@ const nett = document.querySelector(".nett");
       window.addEventListener("click", () => {
         if (window.style.backgroundImage === 'url("assets/red_window.png")') {
           audioError.play();
-          if (numPoints-200 >= 0)
-            numPoints -= 200;
+          if (numPoints - (earnings/5) >= 0)
+            numPoints -= (earnings/5);
           else 
             numPoints = 0;
-          points.innerHTML = convert(numPoints);
+          points.innerHTML = convert(numPoints) + " $";
           window.style.display = 'none';
         }
       });
@@ -156,8 +159,8 @@ const nett = document.querySelector(".nett");
         if (window.style.backgroundImage === 'url("assets/green_window.png")') {
           audioPop.play();
           let rect = canvas.getBoundingClientRect();
-          numPoints += 50;
-          points.innerHTML = convert(numPoints);
+          numPoints += (earnings/10);
+          points.innerHTML = convert(numPoints) + " $";
           /*
           ctx.beginPath();
           ctx.fillText("+50",event.clientX-rect.left, event.clientY-rect.top);
