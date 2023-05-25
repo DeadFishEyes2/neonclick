@@ -31,8 +31,8 @@ function loadGame(){ //a fost..... dificil sa scriu asta
     if (buildingLevel[1] > 0)
         displayStock();
     display();
-    hideElements();
-    displayUpgrade();
     displayProgressBar();
+
+    addUpgrade(1, 1);
     setInterval(saveData,5000);
 }
