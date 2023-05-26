@@ -21,4 +21,6 @@ Limbaje de programare folosite:
 
 Toate imaginile si sunetele prezente in joc pana la momentul actual, cu exceptia casutelor de la Netrunning Minigame au fost realizate de artisti neparticipanti la proiect sau luate de pe net. De asemenea, numele upgrade-urilor de la cladiri, buton pricipal si de la Netrunning Minigame au fost generate cu ajutorul OpenAI si prelucrate manual ulterior. 
 
+Numele jocului vine din stilul cyberpunk, ce prezinta culori vibrante, barile de progres de la cladiri stralucind puternic pentru a reda atmosfera unui viitor super tehnologizat.
+
 Prin acest proiect noi ne propunem sa oferim o sursa de divertisment in plus pasionatilor de acest gen de jocuri, iar in acelasi timp sa promovam istoria si cultura Romaniei in strainatate, lumea vorbitoare de engleza fiind principala noastra audienta. 
