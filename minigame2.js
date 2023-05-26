@@ -37,7 +37,7 @@
 				numPoints -= Math.floor(1.01*curentPrice[curentStock]*stockMultiplier);
 				nrStocks[curentStock]++;
 				document.getElementById("number-of-stocks").innerHTML = nrStocks[curentStock];
-				Balance.innerHTML = numPoints;
+				Balance.innerHTML = convert(numPoints) + " $";
 			}
 		});
 
@@ -46,7 +46,7 @@
 				nrStocks[curentStock]--;
 				numPoints += Math.floor(0.99*curentPrice[curentStock]*stockMultiplier);
 				document.getElementById("number-of-stocks").innerHTML = nrStocks[curentStock];
-				Balance.innerHTML = convert(numPoints);
+				Balance.innerHTML = convert(numPoints) + " $";
 			}
 		});
 
@@ -206,5 +206,3 @@
 		
 		setInterval(draw, 50);
 		} };
-
-		document.addEventListener('buildingChanged', displayStock);

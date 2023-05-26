@@ -617,6 +617,8 @@ function buyUpgrade(i, j){
     if (numPoints >= upgrade[i][0].baseUpgradeCost*Math.pow(10,j)){
         document.getElementById("upgrade" + i + ' ' + j).remove();
         document.getElementById("upgradeButtonToolTip" + i + ' ' + j).remove();
+        numPoints -= upgrade[i][0].baseUpgradeCost*Math.pow(10,j);
+        points.innerHTML = convert(numPoints) + " $"
         upgrade[i][j].owned = true;
         buildingMult[i] *= 3;
         buildingIncome[i] *= 3;

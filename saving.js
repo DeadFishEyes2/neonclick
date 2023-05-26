@@ -24,7 +24,7 @@ function loadGame(){ //a fost..... dificil sa scriu asta
     nrStocks = JSON.parse(localStorage.getItem("numberOfStocks")) || Array(13).fill(0);
     buildingMult = JSON.parse(localStorage.getItem("buildingMult")) || [0,1,1,1,1,1,1,1,1,1,1,1];
     upgrade = JSON.parse(localStorage.getItem("upgrades")) || defineUpgrades();
-    document.getElementById("points").innerHTML = convert(numPoints);
+    document.getElementById("points").innerHTML = convert(numPoints) + " $";
     for (let i = 1; i <= 11; i++) {
         document.getElementById("building" + i + "-level").innerHTML = buildingLevel[i];
         document.getElementById("progress-bar-" + i).addEventListener("animationiteration", () =>{animationUpdate (i)});

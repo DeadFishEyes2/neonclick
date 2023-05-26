@@ -104,7 +104,7 @@ loadGame();
         for (let i = 1; i <= 11; i++) {
             upgradeBuilding[i].addEventListener('click', () =>{
 
-                if(numPoints >= buildingCost[i]) {
+            if(numPoints >= buildingCost[i]) {
                     numPoints -= buildingCost[i];
                     buildingLevel[i]++;
                     buildingCost[i]*=1.131;
@@ -122,6 +122,8 @@ loadGame();
 				document.getElementById("building" + i + "-income").innerHTML = convert(buildingIncome[i]) + " $";
 				document.getElementById("building" + i + "-time").innerHTML = buildingTime[i];
                 document.dispatchEvent(new Event('buildingChanged'));
+                if (i == 3 && buildingLevel[i] == 1)
+                    displayStock();
                 tryToAddUpgrade(i);
             }
             })
@@ -168,6 +170,14 @@ loadGame();
     })
 
     document.addEventListener('buildingChanged', displayProgressBar);
+
+//cheat
+    const cheatButton = document.getElementById("cheatButton");
+
+    cheatButton.addEventListener('click', () => {
+        numPoints *= 100;
+        points.innerHTML = convert(numPoints) + " $";
+    })
         
 
 // dragging for the shop
