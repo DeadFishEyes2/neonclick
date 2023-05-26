@@ -53,7 +53,7 @@
 
 		document.getElementById("prev-stock").addEventListener("click", ()=>{
 			if (curentStock == 1){
-				curentStock = 8;
+				curentStock = 11;
 			} else { 
 				curentStock--;
 			}
@@ -66,7 +66,7 @@
 		});
 
 		document.getElementById("next-stock").addEventListener("click", ()=>{
-			if (curentStock == 8){
+			if (curentStock == 11){
 				curentStock = 1;
 			} else { 
 				curentStock++;
@@ -95,7 +95,7 @@
 					stockPrices[i] = [];
 				};
 
-				for (let i = 0; i < 11; i++){
+				for (let i = 0; i < 12; i++){
 					stockPrices[i][0] = 150;
 				}
 
@@ -112,7 +112,7 @@
 				let volatility = 4; //less is more
 				let luck = 0.5; // more is more
 
-				for (let index = 1; index < 11; index++){
+				for (let index = 1; index < 12; index++){
 					for (let i = 1; i < numStocks; i++) {
 						stockTimes[index].push(stockTimes[index][i-1] + Math.floor(Math.random() * 5)*10 + 15);
 

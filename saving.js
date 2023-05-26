@@ -27,15 +27,13 @@ function loadGame(){ //a fost..... dificil sa scriu asta
         document.getElementById("building" + i + "-level").innerHTML = buildingLevel[i];
         document.getElementById("progress-bar-" + i).addEventListener("animationiteration", () =>{animationUpdate (i)});
         document.getElementById("building" + i + "-cost").innerHTML = convert(buildingCost[i]);
-        //tryToAddUpgrade(i);
     }
     defineUpgrades();
     if (buildingLevel[3] > 0)
         displayStock();
     display();
-    tryToAddUpgrade(1);
-    tryToAddUpgrade(2);
-    tryToAddUpgrade(3);
     displayProgressBar();
+    for (let i = 1; i <= 11; i++)
+        tryToAddUpgrade(i);
     setInterval(saveData,5000);
 }
