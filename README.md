@@ -26,3 +26,5 @@ Numele jocului vine din stilul cyberpunk, ce prezinta culori vibrante, barile de
 Prin acest proiect noi ne propunem sa oferim o sursa de divertisment in plus pasionatilor de acest gen de jocuri, iar in acelasi timp sa promovam istoria si cultura Romaniei in strainatate, lumea vorbitoare de engleza fiind principala noastra audienta. 
 
 Documentatia poate fi gasita in folder-ul "Documentation".
+
+Cum ne dorim sa promovam activ proiectul nostru si sa atragem cati mai multi jucatori, am adaugat o secutiune numita "Roadmap", ce prezinta, in mare, ce urmeaza sa mai implementam pentru fanii NeonClick.
