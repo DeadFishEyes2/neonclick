@@ -413,16 +413,18 @@ body{
             margin: auto;
         }
 
-        #upgrade1{
-            background-color: aqua;
-        }
-
-        #upgrade2{
-            background-color: blue;
-        }
-
-        #upgrade3{
-            background-color: blueviolet;
+        .upgradeButtonToolTip{
+            position: absolute;
+            display: none;
+            align-items: center;
+            z-index: 1;
+            font-size: 16px;
+            background-color: #f9f9f9;
+            color: black;
+            text-align: center;
+            padding: 5px;
+            border-radius: 6px;
+            right: 0px;
         }
 
         .settings{

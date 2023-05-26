@@ -20,6 +20,7 @@ function buyUpgrade(i, j){
     console.log(upgrade[i][0].baseUpgradeCost*Math.pow(10,j));
     if (numPoints >= upgrade[i][0].baseUpgradeCost*Math.pow(10,j)){
         document.getElementById("upgrade" + i + ' ' + j).remove();
+        document.getElementById("upgradeButtonToolTip" + i + ' ' + j).remove();
     }
 }
 
@@ -29,7 +30,24 @@ function addUpgrade(i, j){
     newUpgrade.id = "upgrade" + i + ' ' + j;
     newUpgrade.style.display = "block";
     shop.appendChild(newUpgrade);
+
+    const newToolTip = document.createElement("div");
+    newToolTip.className = "upgradeButtonToolTip";
+    newToolTip.id = "upgradeButtonToolTip" + i + ' ' + j;
+    newToolTip.style.display = "none";
+    let upgradeName = document.createTextNode(upgrade[i][j].name);
+    newToolTip.appendChild(upgradeName);
+    shop.appendChild(newToolTip);
+
     newUpgrade.addEventListener('click', () => buyUpgrade(i, j))
+    
+    newUpgrade.onmouseover = function(){
+        newToolTip.style.display = "block";
+    }
+
+    newUpgrade.onmouseout = function(){
+        newToolTip.style.display = "none";
+    }
 }
 
 
