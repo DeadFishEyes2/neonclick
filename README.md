@@ -14,9 +14,9 @@ Jucatorul trebuie sa speculeze fluctuatile de pret ale actiunilor companiilor de
 
 Jucatorul poate controla indirect ce se intampla pe "campul de lupta", influentand hp-ul si damage-ul unitatilor aliate. Acesta mecanica prevede o dinamica similara cu cea a jocului de piatra, hartie si foarfeca, jucatorul avand la dispozitie 3 tipuri de unitati de baza, fiecare specializandu-se in infrangerea unui anumit tip de inamic.
 
-Limbaje de programare folosite:
-  HTML
-  CSS
+Limbaje de programare folosite:  
+  HTML  
+  CSS  
   JavaScript
 
 Toate imaginile si sunetele prezente in joc pana la momentul actual, cu exceptia casutelor de la Netrunning Minigame au fost realizate de artisti neparticipanti la proiect sau luate de pe net. De asemenea, numele upgrade-urilor de la cladiri, buton pricipal si de la Netrunning Minigame au fost generate cu ajutorul OpenAI si prelucrate manual ulterior. 
