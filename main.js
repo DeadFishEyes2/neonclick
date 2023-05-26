@@ -121,6 +121,7 @@ loadGame();
 				document.getElementById("building" + i + "-income").innerHTML = convert(buildingIncome[i]) + " $";
 				document.getElementById("building" + i + "-time").innerHTML = buildingTime[i];
                 document.dispatchEvent(new Event('buildingChanged'));
+                displayUpgrades(i);
             }
             })
 

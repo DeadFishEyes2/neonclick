@@ -32,7 +32,5 @@ function loadGame(){ //a fost..... dificil sa scriu asta
         displayStock();
     display();
     displayProgressBar();
-
-    addUpgrade(1, 1);
     setInterval(saveData,5000);
 }
