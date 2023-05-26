@@ -24,3 +24,5 @@ Toate imaginile si sunetele prezente in joc pana la momentul actual, cu exceptia
 Numele jocului vine din stilul cyberpunk, ce prezinta culori vibrante, barile de progres de la cladiri stralucind puternic pentru a reda atmosfera unui viitor super tehnologizat.
 
 Prin acest proiect noi ne propunem sa oferim o sursa de divertisment in plus pasionatilor de acest gen de jocuri, iar in acelasi timp sa promovam istoria si cultura Romaniei in strainatate, lumea vorbitoare de engleza fiind principala noastra audienta. 
+
+Documentatia poate fi gasita in folder-ul "Documentation".
