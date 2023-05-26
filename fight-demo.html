@@ -1,0 +1,343 @@
+ <!DOCTYPE html>
+<html>
+<head>
+    <title>Pixel Box</title>
+	<style>
+		canvas {
+			border: 10px solid black;
+		}
+	</style>
+</head>
+<body>
+    <canvas id="myCanvas" width="1000" height="1000"></canvas>
+	<button id="addBlueRectangle">Add Blue Rectangle Pixel</button>
+	<button id="addRedRectangle">Add Red Rectangle Pixel</button>
+	<button id="addBlueCircle">Add Blue Circle Pixel</button>
+	<button id="addRedCircle">Add Red Circle Pixel</button>
+	<button id="addBlueTriangle">Add Blue Triangle Pixel</button>
+	<button id="addRedTriangle">Add Red Triangle Pixel</button>
+	<button id="increaseBlueSpeed">Increase Blue Pixel Speed</button>
+	<button id="increaseRedSpeed">Increase Red Pixel Speed</button>
+	<p>
+        Blue pixels: <span id="blueCount">0</span>
+        Red pixels: <span id="redCount">0</span>
+    </p>
+<script>
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    var pixels = [];
+    var colors = ["red", "blue"];
+    var width = canvas.width;
+    var height = canvas.height;
+    var pixelSize = 10;
+	var blueCount = 0;
+	var redCount = 0;
+	var blueCountSpan = document.getElementById("blueCount");
+	var redCountSpan = document.getElementById("redCount");
+	var blueSpeedMultiplier = 0.5;
+	var redSpeedMultiplier = 1;
+	var redDamage=20;
+	var blueDamage=20;
+	var rectangleDamageMultiplier=2;
+	var circleDamageMultiplier=2;
+	var triangleDamageMultiplier=2;
+	var redHp=100;
+	var blueHp=100;
+	
+	function collisionHandling() {
+		for (var i = 0; i < pixels.length; i++) {
+            var pixel = pixels[i];
+			//deseneaza
+            ctx.fillStyle = pixel.color;
+			if (pixel.shape === "rectangle") {
+				ctx.fillRect(pixel.x - pixelSize / 2, pixel.y - pixelSize / 2, pixelSize, pixelSize);
+			} else if (pixel.shape === "circle") {
+				ctx.beginPath();
+				ctx.arc(pixel.x, pixel.y, pixelSize / 2, 0, 2 * Math.PI);
+				ctx.fill();
+			} else if (pixel.shape === "triangle") {
+				ctx.beginPath();
+				ctx.moveTo(pixel.x, pixel.y - pixelSize / 2);
+				ctx.lineTo(pixel.x - pixelSize / 2, pixel.y + pixelSize / 2);
+				ctx.lineTo(pixel.x + pixelSize / 2, pixel.y + pixelSize / 2);
+				ctx.fill();
+			}
+			// Check for collision with the border
+			if (pixel.x - pixelSize / 2 <= 0) {
+				pixel.xSpeed = Math.abs(pixel.xSpeed);
+			} else if (pixel.x + pixelSize / 2 >= width) {
+				pixel.xSpeed = -Math.abs(pixel.xSpeed);
+			}
+			if (pixel.y - pixelSize / 2 <= 0) {
+				pixel.ySpeed = Math.abs(pixel.ySpeed);
+			} else if (pixel.y + pixelSize / 2 >= height) {
+				pixel.ySpeed = -Math.abs(pixel.ySpeed);
+			}
+            for (var j = 0; j < pixels.length; j++)
+				if(i!=j) {
+					var otherPixel = pixels[j];
+					// Check for collision with other pixels
+					if (Math.abs(pixel.x - otherPixel.x) < pixelSize && Math.abs(pixel.y - otherPixel.y) < pixelSize) {
+					// If the pixels are different colors, the pixels will fight each other
+					if (pixel.color !== otherPixel.color) {
+							if(pixel.color==="red") {
+								if(pixel.shape==="rectangle"&&otherPixel.shape==="triangle")
+									otherPixel.hp-=redDamage*rectangleDamageMultiplier;
+								else if(pixel.shape==="triangle"&&otherPixel.shape==="circle")
+									otherPixel.hp-=redDamage*triangleDamageMultiplier;
+								else if(pixel.shape==="circle"&&otherPixel.shape==="rectangle")
+									otherPixel.hp-=redDamage*circleDamageMultiplier;
+								else
+									otherPixel.hp-=redDamage;
+							}
+							else {
+								if(pixel.shape==="rectangle"&&otherPixel.shape==="triangle")
+									otherPixel.hp-=blueDamage*rectangleDamageMultiplier;
+								else if(pixel.shape==="triangle"&&otherPixel.shape==="circle")
+									otherPixel.hp-=blueDamage*triangleDamageMultiplier;
+								else if(pixel.shape==="circle"&&otherPixel.shape==="rectangle")
+									otherPixel.hp-=blueDamage*circleDamageMultiplier;
+								else
+									otherPixel.hp-=blueDamage;
+							}
+							if(otherPixel.color==="blue") {
+								if(otherPixel.shape==="rectangle"&&pixel.shape==="triangle")
+									pixel.hp-=blueDamage*rectangleDamageMultiplier;
+								else if(otherPixel.shape==="triangle"&&pixel.shape==="circle")
+									pixel.hp-=blueDamage*triangleDamageMultiplier;
+								else if(otherPixel.shape==="circle"&&pixel.shape==="rectangle")
+									pixel.hp-=blueDamage*circleDamageMultiplier;
+								else
+									pixel.hp-=blueDamage;
+							}
+							else {
+								if(otherPixel.shape==="rectangle"&&pixel.shape==="triangle")
+									pixel.hp-=redDamage*rectangleDamageMultiplier;
+								else if(otherPixel.shape==="triangle"&&pixel.shape==="circle")
+									pixel.hp-=redDamage*triangleDamageMultiplier;
+								else if(otherPixel.shape==="circle"&&pixel.shape==="rectangle")
+									pixel.hp-=redDamage*circleDamageMultiplier;
+								else
+									pixel.hp-=redDamage;
+							}
+							if (pixel.hp <= 0)
+								pixels.splice(i, 1);
+							if (otherPixel.hp <= 0)
+								pixels.splice(j, 1);
+						break;
+					}
+					// Collision detection for pixels of the same color
+					else if(pixel.color === otherPixel.color) {
+						// Calculate minimum translation vector
+						const mtv = calculateMTV(pixel, otherPixel);
+						const d = {
+							x: otherPixel.x - pixel.x,
+							y: otherPixel.y - pixel.y
+						};
+						
+						// Triangle with hypotenuse 1
+						const ip = Math.sqrt(d.x * d.x + d.y * d.y);
+						d.x /= ip;
+						d.y /= ip;
+
+						// Separate pixels
+						const overlap = Math.abs(mtv.x) > Math.abs(mtv.y) ? mtv.x : mtv.y;
+						pixel.x -= d.x * overlap;
+						pixel.y -= d.y * overlap;
+						otherPixel.x += d.x * overlap;
+						otherPixel.y += d.y * overlap;
+					}	
+					}
+				}
+		}
+	}
+	
+	function calculateMTV(pixel, otherPixel) {
+		const dx = pixel.x - otherPixel.x;
+		const dy = pixel.y - otherPixel.y;
+		const distanceX = Math.abs(dx) - pixelSize ;
+		const distanceY = Math.abs(dy) - pixelSize ;
+
+		if (distanceX < 0 && distanceY < 0) {
+			// Pixels are overlapping, calculate MTV
+			const mtv = { x: 0, y: 0 };
+
+			if (distanceX > distanceY) {
+				mtv.x = dx > 0 ? -distanceX : distanceX;
+			} else {
+				mtv.y = dy > 0 ? -distanceY : distanceY;
+			}
+
+			return mtv;
+		}
+
+		// No overlap, return zero vector
+		return { x: 0, y: 0 };
+	}
+
+	function attractPixels(pixels) {
+		for (let i = 0; i < pixels.length; i++) {
+			for (let j = i + 1; j < pixels.length; j++) {
+				if (pixels[i].color !== pixels[j].color) {
+					const dx = pixels[j].x - pixels[i].x;
+					const dy = pixels[j].y - pixels[i].y;
+					const distance = Math.sqrt(dx * dx + dy * dy);
+					const force = 0.3 / (distance);
+					const directionX = dx / distance;
+					const directionY = dy / distance;
+					pixels[i].xSpeed += directionX * force;
+					pixels[i].ySpeed += directionY * force;
+					pixels[j].xSpeed -= directionX * force;
+					pixels[j].ySpeed -= directionY * force;
+				}
+			}
+		}
+		return pixels;
+	}
+    function draw() {
+        ctx.clearRect(0, 0, width, height);
+		collisionHandling();
+		attractPixels(pixels);
+		// Update the pixel's position
+        for (let i = 0; i < pixels.length; i++) {
+			const pixel = pixels[i];
+			pixel.x += pixel.xSpeed;
+			pixel.y += pixel.ySpeed;
+		}
+		requestAnimationFrame(draw);
+	}
+	
+	draw();
+	
+	var addBlueRectangle = document.getElementById("addBlueRectangle");
+	var addRedRectangle = document.getElementById("addRedRectangle");
+	var addBlueCircle = document.getElementById("addBlueCircle");
+	var addRedCircle = document.getElementById("addRedCircle");
+	var addBlueTriangle = document.getElementById("addBlueTriangle");
+	var addRedTriangle = document.getElementById("addRedTriangle");
+	var increaseBlueSpeed = document.getElementById("increaseBlueSpeed");
+	var increaseRedSpeed = document.getElementById("increaseRedSpeed");
+
+	addBlueRectangle.addEventListener("click", function() {
+		pixels.push({
+			x: Math.random() * (width - 2 * pixelSize) + pixelSize,
+			y: Math.random() * (height - 2 * pixelSize) + pixelSize,
+			color: "blue",
+			hp: blueHp,
+			xSpeed: blueSpeedMultiplier,
+			ySpeed: blueSpeedMultiplier,
+			shape: "rectangle"
+		});
+	});
+	
+	addBlueCircle.addEventListener("click", function() {
+		pixels.push({
+			x: Math.random() * (width - 2 * pixelSize) + pixelSize,
+			y: Math.random() * (height - 2 * pixelSize) + pixelSize,
+			color: "blue",
+			hp: blueHp,
+			xSpeed: blueSpeedMultiplier,
+			ySpeed: blueSpeedMultiplier,
+			shape: "circle"
+		});
+	});
+
+	addBlueTriangle.addEventListener("click", function() {
+		pixels.push({
+			x: Math.random() * (width - 2 * pixelSize) + pixelSize,
+			y: Math.random() * (height - 2 * pixelSize) + pixelSize,
+			color: "blue",
+			hp: blueHp,
+			xSpeed: blueSpeedMultiplier,
+			ySpeed: blueSpeedMultiplier,
+			shape: "triangle"
+		});
+	});
+
+	addRedRectangle.addEventListener("click", function() {
+		pixels.push({
+			x: Math.random() * (width - 2 * pixelSize) + pixelSize,
+			y: Math.random() * (height - 2 * pixelSize) + pixelSize,
+			color: "red",
+			hp: redHp,
+			xSpeed: redSpeedMultiplier,
+			ySpeed: redSpeedMultiplier,
+			shape: "rectangle"
+		});
+	});
+
+	addRedCircle.addEventListener("click", function() {
+		pixels.push({
+			x: Math.random() * (width - 2 * pixelSize) + pixelSize,
+			y: Math.random() * (height - 2 * pixelSize) + pixelSize,
+			color: "red",
+			hp: blueHp,
+			xSpeed: redSpeedMultiplier,
+			ySpeed: redSpeedMultiplier,
+			shape: "circle"
+		});
+	});
+	
+	addRedTriangle.addEventListener("click", function() {
+		pixels.push({
+			x: Math.random() * (width - 2 * pixelSize) + pixelSize,
+			y: Math.random() * (height - 2 * pixelSize) + pixelSize,
+			color: "red",
+			hp: blueHp,
+			xSpeed: redSpeedMultiplier,
+			ySpeed: redSpeedMultiplier,
+			shape: "triangle"
+		});
+	});
+
+	increaseBlueSpeed.addEventListener("click", function() {
+		blueSpeedMultiplier*=1.05;
+		for (var i = 0; i < pixels.length; i++) {
+			if (pixels[i].color === "blue") {
+				if(pixels[i].xSpeed>0)
+					pixels[i].xSpeed = blueSpeedMultiplier;
+				else
+					pixels[i].xSpeed = -blueSpeedMultiplier;
+				if(pixels[i].ySpeed>0)
+					pixels[i].ySpeed = blueSpeedMultiplier;
+				else
+					pixels[i].ySpeed = -blueSpeedMultiplier;
+			}
+		}
+	});
+
+	increaseRedSpeed.addEventListener("click", function() {
+		redSpeedMultiplier*=1.05;
+		for (var i = 0; i < pixels.length; i++) {
+			if (pixels[i].color === "red") {
+			   if(pixels[i].xSpeed>0)
+					pixels[i].xSpeed = redSpeedMultiplier;
+				else
+					pixels[i].xSpeed = -redSpeedMultiplier;
+				if(pixels[i].ySpeed>0)
+					pixels[i].ySpeed = redSpeedMultiplier;
+				else
+					pixels[i].ySpeed = -redSpeedMultiplier;
+			}
+		}
+	});
+
+	function updatePixelCount() {
+		var blueCount = 0;
+		var redCount = 0;
+		for (var i = 0; i < pixels.length; i++) {
+			var pixel = pixels[i];
+			if (pixel.color === "blue") {
+				blueCount++;
+			} else if (pixel.color === "red") {
+				redCount++;
+			}
+		}
+		blueCountSpan.innerHTML = blueCount;
+		redCountSpan.innerHTML = redCount;
+	}
+	setInterval(updatePixelCount,100);
+	
+</script>
+</body>
+</html>
