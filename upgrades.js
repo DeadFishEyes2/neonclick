@@ -1,4 +1,3 @@
-let upgrade = [];
 function defineUpgrades(){
     upgrade[1] = [
         {
@@ -609,6 +608,7 @@ function defineUpgrades(){
             "owned": false
         }
     ];
+    return upgrade;
 }
 
 const shop = document.getElementById("shop-grid-column");
@@ -654,10 +654,6 @@ function tryToAddUpgrade(i){
     for(let j = 1; buildingLevel[i] >= upgrade[i][j].level; j++){
         if(document.getElementById("upgrade" + i + ' ' + j) == null && upgrade[i][j].owned == false){
             addUpgrade(i, j);
-        } else if (upgrade[i][j].owned == true){
-            buildingMult[i] *= 3;
-            buildingIncome[i] *= 3;
-            document.getElementById("building"+i+"-income").innerHTML = convert(buildingIncome[i]);
         }
     }
 }

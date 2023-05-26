@@ -9,6 +9,7 @@ function saveData(){
     localStorage.setItem("buildingTime", JSON.stringify(buildingTime));
     localStorage.setItem("buildingMult", JSON.stringify(buildingMult));
     localStorage.setItem("tutorial", JSON.stringify(tutorialBool));
+    localStorage.setItem("upgrades",JSON.stringify(upgrade));
 }
 
 function loadGame(){ //a fost..... dificil sa scriu asta
@@ -22,13 +23,13 @@ function loadGame(){ //a fost..... dificil sa scriu asta
     tutorialBool = JSON.parse(localStorage.getItem("tutorial")) || Array(13).fill(false);
     nrStocks = JSON.parse(localStorage.getItem("numberOfStocks")) || Array(13).fill(0);
     buildingMult = JSON.parse(localStorage.getItem("buildingMult")) || [0,1,1,1,1,1,1,1,1,1,1,1];
+    upgrade = JSON.parse(localStorage.getItem("upgrades")) || defineUpgrades();
     document.getElementById("points").innerHTML = convert(numPoints);
     for (let i = 1; i <= 11; i++) {
         document.getElementById("building" + i + "-level").innerHTML = buildingLevel[i];
         document.getElementById("progress-bar-" + i).addEventListener("animationiteration", () =>{animationUpdate (i)});
         document.getElementById("building" + i + "-cost").innerHTML = convert(buildingCost[i]);
     }
-    defineUpgrades();
     if (buildingLevel[3] > 0)
         displayStock();
     display();
