@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>CyberPunkRomania</title>
+        <title>NeonClick</title>
         <link rel="stylesheet" type="text/css" href="style.css">
         <link rel="stylesheet" type="text/css" href="tutorialstyle.css">
     </head>
@@ -15,9 +15,9 @@
             
             <div class = "button-column">
                 
-                <h1>Clicker Game</h1>
+                <h1>NeonClick</h1>
 
-                <h3>Points: <span id="points">0</span></h3>
+                <h3>Money: <span id="points">0</span></h3>
                 
                 <div class = "button-container">
                     <button id="image-button"></button>
@@ -45,26 +45,31 @@
             <div class = "buildings-column">
 
                 <div class = "buildings-column-name">
-                    <p>BUILDINGS</p>
+                    <p>BUSINESSES</p>
                 </div>
 
                 <div class = "buildings-grid-column">
 
                     <button class = "building" id = "building1"></button>
                     <div class = "building-tooltip" id = "building1-tooltip">
-                       The Ferentari Factory     <br>
+                       The Great Steel Factory of Galati<br>
                        This building is at level <span id = "building1-level">0</span><br>
-                       The next upgrade costs <span id = "building1-cost">0</span>
+                       The next upgrade costs <span id = "building1-cost">0</span><br>
+					   This building makes <span id = "building1-income">0</span> every <span id = "building1-time">0</span> second(s)
                     </div>
                     <div class = "progress-bar">
                         <div class="progress-bar-glow" id = "progress-bar-1"></div>
                     </div>
+					<div class = "other-progress-bar">
+                        <div class="other-progress-bar-glow" id = "other-progress-bar-1"></div>
+                    </div>
 
                     <button class = "building" id = "building2"></button>
                     <div class = "building-tooltip" id = "building2-tooltip">
-                        Cutthroat Banking <br>
+                        Doll House<br>
                         This building is at level <span id = "building2-level">0</span><br>
-                        The next upgrade costs <span id = "building2-cost">0</span>
+                        The next upgrade costs <span id = "building2-cost">0</span><br>
+						This building makes <span id = "building2-income">0</span> every <span id = "building2-time">0</span> second(s)
                      </div>
                     <div class = "progress-bar">
                         <div class="progress-bar-glow" id = "progress-bar-2"></div>
@@ -72,9 +77,10 @@
 
                     <button class = "building" id = "building3"></button>
                     <div class = 'building-tooltip' id="building3-tooltip">
-                        The Casino <br>
+                        Casino<br>
                         This building is at level <span id = "building3-level">0</span> <br>
-                        The next upgrade costs <span id = "building3-cost">0</span>
+                        The next upgrade costs <span id = "building3-cost">0</span><br>
+						This building makes <span id = "building3-income">0</span> every <span id = "building3-time">0</span> second(s)
                     </div>
                     <div class = "progress-bar">
                         <div class="progress-bar-glow" id = "progress-bar-3"></div>
@@ -82,9 +88,10 @@
 
                     <button class = "building" id = "building4"></button>
                     <div class = 'building-tooltip' id = "building4-tooltip">
-                        The Doll House <br>
+                        Synthetic Manufacturing Plant<br>
                         This building is at level <span id = "building4-level">0</span> <br>
-                        The next upgrade costs <span id = "building4-cost">0</span>
+                        The next upgrade costs <span id = "building4-cost">0</span><br>
+						This building makes <span id = "building4-income">0</span> every <span id = "building4-time">0</span> second(s)
                     </div>
                     <div class = "progress-bar">
                         <div class = "progress-bar-glow" id = "progress-bar-4"></div>
@@ -92,9 +99,10 @@
 
                     <button class = "building" id = "building5"></button>
                     <div class='building-tooltip' id = "building5-tooltip">
-                        Neturuning Facility <br>
+                        High-Tech Manufacturing Plant<br>
                         This building is at level <span id = "building5-level">0</span> <br>
-                        The next upgrade costs <span id = "building5-cost">0</span>
+                        The next upgrade costs <span id = "building5-cost">0</span><br>
+						This building makes <span id = "building5-income">0</span> every <span id = "building5-time">0</span> second(s)
                     </div>
                     <div class = "progress-bar">
                         <div class = "progress-bar-glow" id = "progress-bar-5"></div>
@@ -102,9 +110,10 @@
 
                     <button class = "building" id = "building6"></button>
                     <div class='building-tooltip' id = "building6-tooltip">
-                        Cutthroat Security <br>
+                        Netrunning Facility<br>
                         This building is at level <span id = "building6-level">0</span> <br>
-                        The next upgrade costs <span id = "building6-cost">0</span>
+                        The next upgrade costs <span id = "building6-cost">0</span><br>
+						This building makes <span id = "building6-income">0</span> every <span id = "building6-time">0</span> second(s)
                     </div>
                     <div class = "progress-bar">
                         <div class = "progress-bar-glow" id = "progress-bar-6"></div>
@@ -112,9 +121,10 @@
 
                     <button class = "building" id = "building7"></button>
                     <div class='building-tooltip' id = "building7-tooltip">
-                        Illegal Synthetic Implants Factory <br>
+                        Joint PR and Marketing Department<br>
                         This building is at level <span id = "building7-level">0</span> <br>
-                        The next upgrade costs <span id = "building7-cost">0</span>
+                        The next upgrade costs <span id = "building7-cost">0</span><br>
+						This building makes <span id = "building7-income">0</span> every <span id = "building7-time">0</span> second(s)
                     </div>
                     <div class = "progress-bar">
                         <div class = "progress-bar-glow" id = "progress-bar-7"></div>
@@ -122,9 +132,10 @@
 
                     <button class = "building" id = "building8"></button>
                     <div class='building-tooltip' id = "building8-tooltip">
-                        High-Tech Manufacturing Plant <br>
+                        Center of Political Cooperation<br>
                         This building is at level <span id = "building8-level">0</span> <br>
-                        The next upgrade costs <span id = "building8-cost">0</span>
+                        The next upgrade costs <span id = "building8-cost">0</span><br>
+						This building makes <span id = "building8-income">0</span> every <span id = "building8-time">0</span> second(s)
                     </div>
                     <div class = "progress-bar">
                         <div class = "progress-bar-glow" id = "progress-bar-8"></div>
@@ -132,9 +143,10 @@
 
                     <button class = "building" id = "building9"></button>
                     <div class='building-tooltip' id = "building9-tooltip">
-                        Forging alliances and attracting customers <br>
+                        The Ploiesti Oil Refineries<br>
                         This building is at level <span id = "building9-level">0</span> <br>
-                        The next upgrade costs <span id = "building9-cost">0</span>
+                        The next upgrade costs <span id = "building9-cost">0</span><br>
+						This building makes <span id = "building9-income">0</span> every <span id = "building9-time">0</span> second(s)
                     </div>
                     <div class = "progress-bar">
                         <div class = "progress-bar-glow" id = "progress-bar-9"></div>
@@ -142,9 +154,10 @@
                     
                     <button class = "building" id = "building10"></button>
                     <div class='building-tooltip' id = "building10-tooltip">
-                        Loan sharking <br>
+                        Corporate Banking<br>
                         This building is at level <span id = "building10-level">0</span> <br>
-                        The next upgrade costs <span id = "building10-cost">0</span>
+                        The next upgrade costs <span id = "building10-cost">0</span><br>
+						This building makes <span id = "building10-income">0</span> every <span id = "building10-time">0</span> second(s)
                     </div>
                     <div class = "progress-bar">
                         <div class = "progress-bar-glow" id = "progress-bar-10"></div>
@@ -152,9 +165,10 @@
 
                     <button class = "building" id = "building11"></button>
                     <div class='building-tooltip' id = "building11-tooltip">
-                        Muscle for hire <br>
+                        Corporate Security<br>
                         This building is at level <span id = "building11-level">0</span> <br>
-                        The next upgrade costs <span id = "building11-cost">0</span>
+                        The next upgrade costs <span id = "building11-cost">0</span><br>
+						This building makes <span id = "building11-income">0</span> every <span id = "building11-time">0</span> second(s)
                     </div>
                     <div class = "progress-bar">
                         <div class = "progress-bar-glow" id = "progress-bar-11"></div>

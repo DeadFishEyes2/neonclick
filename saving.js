@@ -28,7 +28,7 @@ function loadGame(){ //a fost..... dificil sa scriu asta
         document.getElementById("progress-bar-" + i).addEventListener("animationiteration", () =>{animationUpdate (i)});
         document.getElementById("building" + i + "-cost").innerHTML = convert(buildingCost[i]);
     }
-    if (buildingLevel[1] > 0)
+    if (buildingLevel[3] > 0)
         displayStock();
     display();
     displayProgressBar();
