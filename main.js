@@ -121,7 +121,7 @@ loadGame();
 				document.getElementById("building" + i + "-income").innerHTML = convert(buildingIncome[i]) + " $";
 				document.getElementById("building" + i + "-time").innerHTML = buildingTime[i];
                 document.dispatchEvent(new Event('buildingChanged'));
-                displayUpgrades(i);
+                tryToAddUpgrade(i);
             }
             })
 
@@ -166,10 +166,7 @@ loadGame();
         location.reload();
     })
 
-//shop
-    //upgrades
-
-        // upgrade functions
+    document.addEventListener('buildingChanged', displayProgressBar);
         
 
 // dragging for the shop

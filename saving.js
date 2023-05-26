@@ -27,6 +27,7 @@ function loadGame(){ //a fost..... dificil sa scriu asta
         document.getElementById("building" + i + "-level").innerHTML = buildingLevel[i];
         document.getElementById("progress-bar-" + i).addEventListener("animationiteration", () =>{animationUpdate (i)});
         document.getElementById("building" + i + "-cost").innerHTML = convert(buildingCost[i]);
+        //tryToAddUpgrade(i);
     }
     if (buildingLevel[3] > 0)
         displayStock();

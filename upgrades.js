@@ -5,10 +5,17 @@ upgrade[1] = [
     },
     {
         "name": "Advanced Blast Furnace Technology",
+        "level": 25,
         "owned": false
     },
     {
         "name": "Virtual Reality Steel Production Line Management",
+        "level": 50,
+        "owned": false
+    },
+    {
+        "name": "Virtual Reality Steel Production Line Management",
+        "level": 75,
         "owned": false
     }
 ];
@@ -16,8 +23,6 @@ upgrade[1] = [
 const shop = document.getElementById("shop-grid-column");
 
 function buyUpgrade(i, j){
-    console.log(i + ' ' + j)
-    console.log(upgrade[i][0].baseUpgradeCost*Math.pow(10,j));
     if (numPoints >= upgrade[i][0].baseUpgradeCost*Math.pow(10,j)){
         document.getElementById("upgrade" + i + ' ' + j).remove();
         document.getElementById("upgradeButtonToolTip" + i + ' ' + j).remove();
@@ -50,6 +55,13 @@ function addUpgrade(i, j){
     }
 }
 
+function tryToAddUpgrade(i){
+    for(let j = 1; buildingLevel[i] >= upgrade[i][j].level; j++){
+        if(document.getElementById("upgrade" + i + ' ' + j) == null && upgrade[i][j].owned == false){
+            addUpgrade(i, j);
+        }
+    }
+}
 
 function getUpgradeInfo(i){
     let upgradeLevel = i%10;
