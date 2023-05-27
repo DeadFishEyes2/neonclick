@@ -59,7 +59,7 @@ loadGame();
 
 //audio
 
-    var audio = new Audio("clickSound.mp3");    
+    var audio = new Audio("assets/clickSound.mp3");    
 
 //button and points
 
