@@ -5,6 +5,11 @@ const toggleMinigame = document.getElementById("minigame-button");
       const canvas = document.getElementById("room");
       const ctx = canvas.getContext("2d");
 
+//audio
+
+var audioPop = new Audio("assets/pop_sound.mp3");
+var audioError = new Audio("assets/error_sound.mp3"); 
+
 //drawing the nett
 
 toggleMinigame.addEventListener("click", ()=>{
@@ -134,17 +139,13 @@ const draw = () => {
   if (k <= 0) {
     k = centerX - squareSize/2;
   }
-};
+};  
 
 const interval = setInterval(draw, 13);
 
 //windows appearance and control
 let r_box = 0;
-let g_box = 0;
-
-var audioPop = new Audio("assets/pop_sound.mp3");
-var audioError = new Audio("assets/error_sound.mp3");    
-
+let g_box = 0; 
 
 const nett = document.querySelector(".nett");
     const windowCount = maxNumberOfWindows;

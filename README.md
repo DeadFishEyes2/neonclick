@@ -28,3 +28,24 @@ Prin acest proiect noi ne propunem sa oferim o sursa de divertisment in plus pas
 Documentatia poate fi gasita in folder-ul "Documentation".
 
 Cum ne dorim sa promovam activ proiectul nostru si sa atragem cati mai multi jucatori, am adaugat o secutiune numita "Roadmap", ce prezinta, in mare, ce urmeaza sa mai implementam pentru fanii NeonClick.
+
+### ---Rolul fiecărui membru---
+
+-Alin-
+-crearea unui grid pentru așezarea elementelor în pagină
+-crearea sistemului de stocare de date
+-dezvoltarea Stock Marketului
+-implementarea animației și funcționalității minigame-ului de netrunning
+-crearea de template-uri pentru componentele recurente ale jocului (butoane, bări de progres, upgrade-uri, tool tip-uri)
+-implementarea sistemului de upgrade-uri
+-crearea panoului de setări
+-crearea unui tutorial pentru joc
+
+-Laurențiu-
+-calcularea costurilor și a veniturilor optime pentru joc
+-crearea funcției de conversie pentru afișarea banilor din joc
+-denumirea elementelor din joc
+-dezvoltarea poveștii jocului
+-dezvoltarea pentru fighting minigame
+-sistemul de scalling pentru netrunnning minigame
+-scrierea de documentație și a planului de viitor
