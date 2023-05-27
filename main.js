@@ -160,26 +160,6 @@ loadGame();
     }
 
 
-//reset
-    const resetButton = document.getElementById("resetButton");
-
-    resetButton.addEventListener('click', () =>{
-        localStorage.clear();
-        loadGame();
-        location.reload();
-    })
-
-    document.addEventListener('buildingChanged', displayProgressBar);
-
-//cheat
-    const cheatButton = document.getElementById("cheatButton");
-
-    cheatButton.addEventListener('click', () => {
-        numPoints *= 100;
-        points.innerHTML = convert(numPoints) + " $";
-    })
-        
-
 // dragging for the shop
     //const shop = document.getElementById('shop-grid-column');
     shop.style.cursor = 'grab';
