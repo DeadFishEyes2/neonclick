@@ -48,4 +48,4 @@ Cum ne dorim sa promovam activ proiectul nostru si sa atragem cati mai multi juc
 	-dezvoltarea poveștii jocului
 	-dezvoltarea pentru fighting minigame
 	-sistemul de scalling pentru netrunnning minigame
--scrierea de documentație și a planului de viitor
+	-scrierea de documentație și a planului de viitor
